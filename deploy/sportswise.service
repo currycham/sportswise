@@ -1,0 +1,22 @@
+[Unit]
+Description=SportsWise personalized movement coach
+After=network.target
+
+[Service]
+Type=simple
+User=sportswise
+Group=sportswise
+WorkingDirectory=/srv/sportswise/app
+EnvironmentFile=/srv/sportswise/app/.env
+ExecStart=/srv/sportswise/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8500 --workers 1
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/sportswise/data
+
+[Install]
+WantedBy=multi-user.target

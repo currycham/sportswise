@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+BASE=/srv/sportswise
+[[ -f "$BASE/data/sportswise.db" ]] || exit 0
+umask 077
+runuser -u sportswise -- "$BASE/venv/bin/python" "$BASE/app/deploy/backup.py" "$BASE/data/sportswise.db" "$BASE/backup/sportswise-$(date -u +%Y%m%d).db"
+find "$BASE/backup" -maxdepth 1 -type f -name 'sportswise-*.db' -mtime +30 -delete
