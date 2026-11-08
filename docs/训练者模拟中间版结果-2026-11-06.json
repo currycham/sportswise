@@ -1,0 +1,2755 @@
+{
+  "policy": "calibrated-v6",
+  "source_hashes": {
+    "app/engine.py": "60f8fbc4c158d5aff1e300df0947e25ed5ef2ff4cc9c41bd5048168fc973ec5d",
+    "app/workouts.py": "bb998de56cd7e51913199b1a89b0916ccf0f30ce949306754c9c93205e6d908f"
+  },
+  "cases": [
+    {
+      "id": "beginner",
+      "label": "成人新手，每周三次",
+      "profile": {
+        "name": "运动者",
+        "goal": "habit",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "偶尔散步，正在找回运动节奏",
+        "level": "beginner",
+        "days": [
+          0,
+          2,
+          5
+        ],
+        "minutes": 30,
+        "equipment": [
+          "bodyweight"
+        ],
+        "place": "mixed",
+        "likes": [
+          "walking",
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 55,
+        "kinds": {
+          "walk": 2,
+          "strength": 1
+        },
+        "strength_sets": 4,
+        "titles": [
+          "步行 · 舒适有氧",
+          "全身力量 A · 蹲、推与小腿",
+          "步行 · 轻松恢复"
+        ],
+        "movements": {
+          "步行 · 舒适有氧": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 13
+            }
+          ],
+          "全身力量 A · 蹲、推与小腿": [
+            {
+              "title": "椅子坐站",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 5
+            },
+            {
+              "title": "墙面俯卧撑",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 4
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 4
+            }
+          ],
+          "步行 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 11
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 55,
+        "kinds": {
+          "walk": 2,
+          "strength": 1
+        },
+        "strength_sets": 4,
+        "titles": [
+          "步行 · 舒适有氧",
+          "全身力量 A · 蹲、推与小腿",
+          "步行 · 轻松恢复"
+        ],
+        "movements": {
+          "步行 · 舒适有氧": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 13
+            }
+          ],
+          "全身力量 A · 蹲、推与小腿": [
+            {
+              "title": "椅子坐站",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 5
+            },
+            {
+              "title": "墙面俯卧撑",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 4
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 4
+            }
+          ],
+          "步行 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 11
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "returning",
+      "label": "中断半年后恢复体能",
+      "profile": {
+        "name": "运动者",
+        "goal": "energy",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "偶尔散步，正在找回运动节奏",
+        "level": "returning",
+        "days": [
+          0,
+          2,
+          5
+        ],
+        "minutes": 40,
+        "equipment": [
+          "bodyweight"
+        ],
+        "place": "mixed",
+        "likes": [
+          "walking",
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 75,
+        "kinds": {
+          "strength": 2,
+          "walk": 1
+        },
+        "strength_sets": 12,
+        "titles": [
+          "全身力量 A · 蹲、推与小腿",
+          "步行 · 舒适有氧",
+          "全身力量 B · 髋、躯干与单侧"
+        ],
+        "movements": {
+          "全身力量 A · 蹲、推与小腿": [
+            {
+              "title": "椅子坐站",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            },
+            {
+              "title": "墙面俯卧撑",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            }
+          ],
+          "步行 · 舒适有氧": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 18
+            }
+          ],
+          "全身力量 B · 髋、躯干与单侧": [
+            {
+              "title": "臀桥",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            },
+            {
+              "title": "四点支撑伸展",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            },
+            {
+              "title": "扶稳浅分腿蹲",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 75,
+        "kinds": {
+          "strength": 2,
+          "walk": 1
+        },
+        "strength_sets": 12,
+        "titles": [
+          "全身力量 A · 蹲、推与小腿",
+          "步行 · 舒适有氧",
+          "全身力量 B · 髋、躯干与单侧"
+        ],
+        "movements": {
+          "全身力量 A · 蹲、推与小腿": [
+            {
+              "title": "椅子坐站",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            },
+            {
+              "title": "墙面俯卧撑",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            }
+          ],
+          "步行 · 舒适有氧": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 18
+            }
+          ],
+          "全身力量 B · 髋、躯干与单侧": [
+            {
+              "title": "臀桥",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            },
+            {
+              "title": "四点支撑伸展",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            },
+            {
+              "title": "扶稳浅分腿蹲",
+              "sets": 2,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 6
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "advanced_muscle",
+      "label": "训练三年的进阶增肌者",
+      "profile": {
+        "name": "运动者",
+        "goal": "muscle",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "规律力量训练三年，每周五练，想增加背部与肩部肌肉，熟悉深蹲、硬拉、卧推和划船。",
+        "level": "regular",
+        "days": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "minutes": 45,
+        "equipment": [
+          "dumbbell",
+          "band"
+        ],
+        "place": "mixed",
+        "likes": [
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 150,
+        "kinds": {
+          "strength": 2,
+          "mobility": 3
+        },
+        "strength_sets": 16,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "关节活动 · 髋、肩与踝",
+          "全身抗阻 B · 巩固训练",
+          "恢复活动 · 胸椎、髋与小腿",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "恢复活动 · 胸椎、髋与小腿": [
+            {
+              "title": "坐姿胸椎转动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "站姿髋折叠",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙小腿拉伸",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 150,
+        "kinds": {
+          "strength": 2,
+          "mobility": 3
+        },
+        "strength_sets": 16,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "关节活动 · 髋、肩与踝",
+          "全身抗阻 B · 巩固训练",
+          "恢复活动 · 胸椎、髋与小腿",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "恢复活动 · 胸椎、髋与小腿": [
+            {
+              "title": "坐姿胸椎转动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "站姿髋折叠",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙小腿拉伸",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "regular_muscle",
+      "label": "刚建立规律的增肌者",
+      "profile": {
+        "name": "运动者",
+        "goal": "muscle",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "刚保持两个月规律，每周两次轻力量。",
+        "level": "regular",
+        "days": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "minutes": 45,
+        "equipment": [
+          "dumbbell",
+          "band"
+        ],
+        "place": "mixed",
+        "likes": [
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 150,
+        "kinds": {
+          "strength": 2,
+          "mobility": 3
+        },
+        "strength_sets": 16,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "关节活动 · 髋、肩与踝",
+          "全身抗阻 B · 巩固训练",
+          "恢复活动 · 胸椎、髋与小腿",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "恢复活动 · 胸椎、髋与小腿": [
+            {
+              "title": "坐姿胸椎转动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "站姿髋折叠",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙小腿拉伸",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 150,
+        "kinds": {
+          "strength": 2,
+          "mobility": 3
+        },
+        "strength_sets": 16,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "关节活动 · 髋、肩与踝",
+          "全身抗阻 B · 巩固训练",
+          "恢复活动 · 胸椎、髋与小腿",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "恢复活动 · 胸椎、髋与小腿": [
+            {
+              "title": "坐姿胸椎转动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "站姿髋折叠",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙小腿拉伸",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "advanced_bodyweight",
+      "label": "资深徒手训练者",
+      "profile": {
+        "name": "运动者",
+        "goal": "muscle",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "已规律徒手训练四年，标准俯卧撑可连续三十次，想进阶练背和肩。",
+        "level": "regular",
+        "days": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "minutes": 45,
+        "equipment": [
+          "bodyweight"
+        ],
+        "place": "home",
+        "likes": [
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 130,
+        "kinds": {
+          "strength": 2,
+          "mobility": 2
+        },
+        "strength_sets": 16,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "全身抗阻 B · 巩固训练",
+          "关节活动 · 髋、肩与踝",
+          "恢复活动 · 胸椎、髋与小腿"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "徒手慢速深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "俯卧撑",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单腿臀桥",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "徒手反向飞鸟",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "俯卧撑",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "臀桥",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "徒手反向飞鸟",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ],
+          "恢复活动 · 胸椎、髋与小腿": [
+            {
+              "title": "坐姿胸椎转动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "站姿髋折叠",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙小腿拉伸",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 130,
+        "kinds": {
+          "strength": 2,
+          "mobility": 2
+        },
+        "strength_sets": 16,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "全身抗阻 B · 巩固训练",
+          "关节活动 · 髋、肩与踝",
+          "恢复活动 · 胸椎、髋与小腿"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "徒手慢速深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "俯卧撑",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单腿臀桥",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "徒手反向飞鸟",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "俯卧撑",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "臀桥",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "徒手反向飞鸟",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 24
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ],
+          "恢复活动 · 胸椎、髋与小腿": [
+            {
+              "title": "坐姿胸椎转动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "站姿髋折叠",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙小腿拉伸",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "runner",
+      "label": "已规律跑步的耐力者",
+      "profile": {
+        "name": "运动者",
+        "goal": "endurance",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "规律跑步三年，目前每周三十公里，十公里跑接近五十分钟。",
+        "level": "regular",
+        "days": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "minutes": 45,
+        "equipment": [
+          "dumbbell"
+        ],
+        "place": "mixed",
+        "likes": [
+          "running",
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 220,
+        "kinds": {
+          "run": 3,
+          "strength": 2
+        },
+        "strength_sets": 12,
+        "titles": [
+          "跑步节奏练习 · 快慢交替",
+          "跑步配套力量 · 膝髋与小腿",
+          "跑步 · 轻松恢复",
+          "持续跑步 · 稳定有氧",
+          "跑步配套力量 · 单腿稳定与髋"
+        ],
+        "movements": {
+          "跑步节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 38
+            }
+          ],
+          "跑步配套力量 · 膝髋与小腿": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 13
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 13
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 12
+            }
+          ],
+          "跑步 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ],
+          "持续跑步 · 稳定有氧": [
+            {
+              "title": "持续有氧",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 38
+            }
+          ],
+          "跑步配套力量 · 单腿稳定与髋": [
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 13
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 13
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 12
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 220,
+        "kinds": {
+          "run": 3,
+          "strength": 2
+        },
+        "strength_sets": 12,
+        "titles": [
+          "跑步节奏练习 · 快慢交替",
+          "跑步配套力量 · 膝髋与小腿",
+          "跑步 · 轻松恢复",
+          "持续跑步 · 稳定有氧",
+          "跑步配套力量 · 单腿稳定与髋"
+        ],
+        "movements": {
+          "跑步节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 38
+            }
+          ],
+          "跑步配套力量 · 膝髋与小腿": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 13
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 13
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 12
+            }
+          ],
+          "跑步 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ],
+          "持续跑步 · 稳定有氧": [
+            {
+              "title": "持续有氧",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 38
+            }
+          ],
+          "跑步配套力量 · 单腿稳定与髋": [
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 13
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 13
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 12
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "cyclist",
+      "label": "规律骑行者",
+      "profile": {
+        "name": "运动者",
+        "goal": "endurance",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "周末通常骑行两小时，平日骑行四十分钟。",
+        "level": "regular",
+        "days": [
+          0,
+          2,
+          5
+        ],
+        "minutes": 45,
+        "equipment": [
+          "bodyweight"
+        ],
+        "place": "mixed",
+        "likes": [
+          "cycling"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 130,
+        "kinds": {
+          "bike": 3
+        },
+        "strength_sets": 0,
+        "titles": [
+          "骑行节奏练习 · 快慢交替",
+          "骑行 · 轻松恢复",
+          "持续骑行 · 稳定有氧"
+        ],
+        "movements": {
+          "骑行节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 38
+            }
+          ],
+          "骑行 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ],
+          "持续骑行 · 稳定有氧": [
+            {
+              "title": "持续有氧",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 38
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 130,
+        "kinds": {
+          "bike": 3
+        },
+        "strength_sets": 0,
+        "titles": [
+          "骑行节奏练习 · 快慢交替",
+          "骑行 · 轻松恢复",
+          "持续骑行 · 稳定有氧"
+        ],
+        "movements": {
+          "骑行节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 38
+            }
+          ],
+          "骑行 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ],
+          "持续骑行 · 稳定有氧": [
+            {
+              "title": "持续有氧",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 38
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "menstrual_normal",
+      "label": "经期状态如常，规律增肌",
+      "profile": {
+        "name": "运动者",
+        "goal": "muscle",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "偶尔散步，正在找回运动节奏",
+        "level": "regular",
+        "days": [
+          0,
+          2,
+          4
+        ],
+        "minutes": 40,
+        "equipment": [
+          "dumbbell"
+        ],
+        "place": "mixed",
+        "likes": [
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 100,
+        "kinds": {
+          "strength": 2,
+          "mobility": 1
+        },
+        "strength_sets": 16,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "全身抗阻 B · 巩固训练",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 19
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 19
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 100,
+        "kinds": {
+          "strength": 2,
+          "mobility": 1
+        },
+        "strength_sets": 16,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "全身抗阻 B · 巩固训练",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 19
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 19
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "menstrual_ease",
+      "label": "经期希望减量，规律增肌",
+      "profile": {
+        "name": "运动者",
+        "goal": "muscle",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "偶尔散步，正在找回运动节奏",
+        "level": "regular",
+        "days": [
+          0,
+          2,
+          4
+        ],
+        "minutes": 40,
+        "equipment": [
+          "dumbbell"
+        ],
+        "place": "mixed",
+        "likes": [
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 50,
+        "kinds": {
+          "strength": 2,
+          "mobility": 1
+        },
+        "strength_sets": 6,
+        "titles": [
+          "全身力量 A · 蹲、推与小腿",
+          "全身力量 B · 髋、躯干与单侧",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身力量 A · 蹲、推与小腿": [
+            {
+              "title": "椅子坐站",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 5
+            },
+            {
+              "title": "墙面俯卧撑",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 4
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 4
+            }
+          ],
+          "全身力量 B · 髋、躯干与单侧": [
+            {
+              "title": "臀桥",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 5
+            },
+            {
+              "title": "四点支撑伸展",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 4
+            },
+            {
+              "title": "扶稳浅分腿蹲",
+              "sets": 1,
+              "reps": 6,
+              "rest_seconds": 60,
+              "minutes": 4
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 2
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 2
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 2
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 100,
+        "kinds": {
+          "strength": 2,
+          "mobility": 1
+        },
+        "strength_sets": 16,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "全身抗阻 B · 巩固训练",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 19
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 5
+            },
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 60,
+              "minutes": 19
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 5
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 4
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": false
+    },
+    {
+      "id": "localized_pain",
+      "label": "进阶增肌，局部膝部和腰背限制",
+      "profile": {
+        "name": "运动者",
+        "goal": "muscle",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "偶尔散步，正在找回运动节奏",
+        "level": "regular",
+        "days": [
+          0,
+          1,
+          2,
+          4,
+          6
+        ],
+        "minutes": 45,
+        "equipment": [
+          "dumbbell",
+          "band"
+        ],
+        "place": "mixed",
+        "likes": [
+          "strength",
+          "walking"
+        ],
+        "limitations": "近期膝盖偶尔不适，腰部有旧伤",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "caution",
+        "message": "已结合身体情况生成较轻量安排。活动类型与强度请遵医嘱；出现不适时停止，医嘱有冲突时以医嘱为准。"
+      },
+      "week1": {
+        "minutes": 75,
+        "kinds": {
+          "strength": 2,
+          "walk": 3
+        },
+        "strength_sets": 4,
+        "titles": [
+          "坐姿上肢轻抗阻",
+          "步行 · 舒适有氧",
+          "坐姿上肢轻抗阻",
+          "步行 · 轻松恢复",
+          "步行 · 舒适有氧"
+        ],
+        "movements": {
+          "坐姿上肢轻抗阻": [
+            {
+              "title": "坐姿轻弹力带拉开",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 6
+            },
+            {
+              "title": "坐姿轻阻力弯举",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 5
+            }
+          ],
+          "步行 · 舒适有氧": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 11
+            }
+          ],
+          "步行 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 11
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 75,
+        "kinds": {
+          "strength": 2,
+          "walk": 3
+        },
+        "strength_sets": 4,
+        "titles": [
+          "坐姿上肢轻抗阻",
+          "步行 · 舒适有氧",
+          "坐姿上肢轻抗阻",
+          "步行 · 轻松恢复",
+          "步行 · 舒适有氧"
+        ],
+        "movements": {
+          "坐姿上肢轻抗阻": [
+            {
+              "title": "坐姿轻弹力带拉开",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 6
+            },
+            {
+              "title": "坐姿轻阻力弯举",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 5
+            }
+          ],
+          "步行 · 舒适有氧": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 11
+            }
+          ],
+          "步行 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 11
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "limited_time",
+      "label": "只有十分钟的规律增肌者",
+      "profile": {
+        "name": "运动者",
+        "goal": "muscle",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "偶尔散步，正在找回运动节奏",
+        "level": "regular",
+        "days": [
+          0,
+          2,
+          4
+        ],
+        "minutes": 10,
+        "equipment": [
+          "dumbbell"
+        ],
+        "place": "mixed",
+        "likes": [
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 30,
+        "kinds": {
+          "strength": 2,
+          "mobility": 1
+        },
+        "strength_sets": 5,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "全身抗阻 B · 巩固训练",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 2
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 2
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 2
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 2
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 2
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 30,
+        "kinds": {
+          "strength": 2,
+          "mobility": 1
+        },
+        "strength_sets": 5,
+        "titles": [
+          "全身抗阻 A · 巩固训练",
+          "全身抗阻 B · 巩固训练",
+          "关节活动 · 髋、肩与踝"
+        ],
+        "movements": {
+          "全身抗阻 A · 巩固训练": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 2
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            }
+          ],
+          "全身抗阻 B · 巩固训练": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 2
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 90,
+              "minutes": 4
+            }
+          ],
+          "关节活动 · 髋、肩与踝": [
+            {
+              "title": "站姿髋部活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 2
+            },
+            {
+              "title": "肩胛绕环",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 2
+            },
+            {
+              "title": "扶墙踝关节活动",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 2
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "multi_sport",
+      "label": "多种偏好，改善体能",
+      "profile": {
+        "name": "运动者",
+        "goal": "energy",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "偶尔散步，正在找回运动节奏",
+        "level": "regular",
+        "days": [
+          0,
+          1,
+          2,
+          4,
+          6
+        ],
+        "minutes": 40,
+        "equipment": [
+          "dumbbell"
+        ],
+        "place": "mixed",
+        "likes": [
+          "walking",
+          "running",
+          "cycling",
+          "badminton",
+          "dance",
+          "strength"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 200,
+        "kinds": {
+          "strength": 2,
+          "dance": 1,
+          "bike": 1,
+          "walk": 1
+        },
+        "strength_sets": 12,
+        "titles": [
+          "全身力量 A · 蹲、推与拉",
+          "低冲击有氧舞 · 步伐与节奏",
+          "全身力量 B · 髋、躯干与单侧",
+          "骑行节奏练习 · 快慢交替",
+          "快走节奏练习 · 快慢交替"
+        ],
+        "movements": {
+          "全身力量 A · 蹲、推与拉": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            }
+          ],
+          "低冲击有氧舞 · 步伐与节奏": [
+            {
+              "title": "组合步与踏步恢复",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ],
+          "全身力量 B · 髋、躯干与单侧": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            },
+            {
+              "title": "上斜俯卧撑",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            },
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            }
+          ],
+          "骑行节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ],
+          "快走节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 200,
+        "kinds": {
+          "strength": 2,
+          "bike": 1,
+          "walk": 1,
+          "run": 1
+        },
+        "strength_sets": 12,
+        "titles": [
+          "全身力量 A · 蹲、推与拉",
+          "骑行节奏练习 · 快慢交替",
+          "全身力量 B · 髋、躯干与单侧",
+          "快走节奏练习 · 快慢交替",
+          "跑步节奏练习 · 快慢交替"
+        ],
+        "movements": {
+          "全身力量 A · 蹲、推与拉": [
+            {
+              "title": "哑铃杯式深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            },
+            {
+              "title": "单臂哑铃划船",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            },
+            {
+              "title": "地板哑铃卧推",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            }
+          ],
+          "骑行节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ],
+          "全身力量 B · 髋、躯干与单侧": [
+            {
+              "title": "哑铃罗马尼亚硬拉",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            },
+            {
+              "title": "上斜俯卧撑",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            },
+            {
+              "title": "扶稳反向弓步",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 11
+            }
+          ],
+          "快走节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ],
+          "跑步节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 33
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": false
+    },
+    {
+      "id": "older_bone",
+      "label": "七十岁希望维护骨骼与平衡的规律步行者",
+      "profile": {
+        "name": "运动者",
+        "goal": "bone",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "七十岁，每天规律散步，想维护骨骼与上下楼能力，目前没有报告不适。",
+        "level": "regular",
+        "days": [
+          0,
+          2,
+          5
+        ],
+        "minutes": 30,
+        "equipment": [
+          "bodyweight"
+        ],
+        "place": "mixed",
+        "likes": [
+          "walking"
+        ],
+        "limitations": "",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "none",
+        "message": ""
+      },
+      "week1": {
+        "minutes": 85,
+        "kinds": {
+          "walk": 2,
+          "strength": 1
+        },
+        "strength_sets": 6,
+        "titles": [
+          "快走节奏练习 · 快慢交替",
+          "全身力量 A · 蹲、推与小腿",
+          "步行 · 轻松恢复"
+        ],
+        "movements": {
+          "快走节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 23
+            }
+          ],
+          "全身力量 A · 蹲、推与小腿": [
+            {
+              "title": "徒手慢速深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 8
+            },
+            {
+              "title": "上斜俯卧撑",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 8
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 7
+            }
+          ],
+          "步行 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 18
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 85,
+        "kinds": {
+          "walk": 2,
+          "strength": 1
+        },
+        "strength_sets": 6,
+        "titles": [
+          "快走节奏练习 · 快慢交替",
+          "全身力量 A · 蹲、推与小腿",
+          "步行 · 轻松恢复"
+        ],
+        "movements": {
+          "快走节奏练习 · 快慢交替": [
+            {
+              "title": "节奏段与恢复段",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 23
+            }
+          ],
+          "全身力量 A · 蹲、推与小腿": [
+            {
+              "title": "徒手慢速深蹲",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 8
+            },
+            {
+              "title": "上斜俯卧撑",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 8
+            },
+            {
+              "title": "扶稳提踵",
+              "sets": 2,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 7
+            }
+          ],
+          "步行 · 轻松恢复": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 18
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "healthy_negation",
+      "label": "明确说没有疼痛的进阶增肌者",
+      "profile": {
+        "name": "运动者",
+        "goal": "muscle",
+        "motivation": "让运动成为生活的一部分，周末走远一点也不累。",
+        "current": "偶尔散步，正在找回运动节奏",
+        "level": "regular",
+        "days": [
+          0,
+          2,
+          4
+        ],
+        "minutes": 40,
+        "equipment": [
+          "dumbbell"
+        ],
+        "place": "mixed",
+        "likes": [
+          "strength"
+        ],
+        "limitations": "目前无膝伤，腰背无不适",
+        "adult": true,
+        "consent": true
+      },
+      "risk": {
+        "level": "caution",
+        "message": "已结合身体情况生成较轻量安排。活动类型与强度请遵医嘱；出现不适时停止，医嘱有冲突时以医嘱为准。"
+      },
+      "week1": {
+        "minutes": 45,
+        "kinds": {
+          "strength": 2,
+          "indoor": 1
+        },
+        "strength_sets": 4,
+        "titles": [
+          "坐姿上肢轻抗阻",
+          "坐姿上肢轻抗阻",
+          "室内踏步 · 舒适有氧"
+        ],
+        "movements": {
+          "坐姿上肢轻抗阻": [
+            {
+              "title": "坐姿肩胛后收",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 6
+            },
+            {
+              "title": "坐姿轻阻力弯举",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 5
+            }
+          ],
+          "室内踏步 · 舒适有氧": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 11
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "week2": {
+        "minutes": 45,
+        "kinds": {
+          "strength": 2,
+          "indoor": 1
+        },
+        "strength_sets": 4,
+        "titles": [
+          "坐姿上肢轻抗阻",
+          "坐姿上肢轻抗阻",
+          "室内踏步 · 舒适有氧"
+        ],
+        "movements": {
+          "坐姿上肢轻抗阻": [
+            {
+              "title": "坐姿肩胛后收",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 6
+            },
+            {
+              "title": "坐姿轻阻力弯举",
+              "sets": 1,
+              "reps": 8,
+              "rest_seconds": 75,
+              "minutes": 5
+            }
+          ],
+          "室内踏步 · 舒适有氧": [
+            {
+              "title": "舒适节奏",
+              "sets": null,
+              "reps": null,
+              "rest_seconds": null,
+              "minutes": 11
+            }
+          ]
+        },
+        "time_sums_match": true
+      },
+      "same_training_two_weeks": true
+    }
+  ],
+  "advanced_vs_new_regular_identical": true
+}

@@ -1,0 +1,511 @@
+{
+  "scope": "虚构档案与局部修改测试，不等同所有人群质量证明",
+  "reports": {
+    "sportswise-fast-abandoned-20261108.json": {
+      "abandoned": true,
+      "reason": "快速生成对照首评71分，继续修订无速度/质量优势；不作为默认配置",
+      "last_review_score": 88,
+      "last_must_fix": [
+        "修正2026-11-11弹力带高位下拉/辅助引体的时间分配：增加到至少6分钟，或调整组数/休息/次数。",
+        "修正2026-11-11弹力带面拉的时间分配：增加到至少4分钟，或调整组数/休息/次数。",
+        "修正2026-11-13弹力带坐姿划船的时间分配：增加到至少6分钟，或调整组数/休息/次数。"
+      ]
+    },
+    "sportswise-final-routing-tests-20261108.json": [
+      {
+        "case": "simple",
+        "ok": true,
+        "seconds": 373.3,
+        "calls": [
+          {
+            "task": "plan_generate",
+            "model": "deepseek-flash",
+            "effort": "low",
+            "duration_ms": 96055,
+            "status": "ok",
+            "prompt_tokens": 3941,
+            "completion_tokens": 14362,
+            "estimated_cost_yuan": 0.184167
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-flash",
+            "effort": "low",
+            "duration_ms": 58011,
+            "status": "ok",
+            "prompt_tokens": 6975,
+            "completion_tokens": 8460,
+            "estimated_cost_yuan": 0.122445
+          },
+          {
+            "task": "plan_revise",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 26866,
+            "status": "ok",
+            "prompt_tokens": 7916,
+            "completion_tokens": 3356,
+            "estimated_cost_yuan": 0.25608
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 58587,
+            "status": "ok",
+            "prompt_tokens": 6950,
+            "completion_tokens": 5754,
+            "estimated_cost_yuan": 0.359592
+          },
+          {
+            "task": "plan_revise",
+            "model": "deepseek-v4-pro",
+            "effort": "high",
+            "duration_ms": 63293,
+            "status": "ok",
+            "prompt_tokens": 7968,
+            "completion_tokens": 6989,
+            "estimated_cost_yuan": 0.431088
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-v4-pro",
+            "effort": "high",
+            "duration_ms": 70393,
+            "status": "ok",
+            "prompt_tokens": 7018,
+            "completion_tokens": 7029,
+            "estimated_cost_yuan": 0.421608
+          }
+        ],
+        "reviews": [
+          {
+            "score": 91.0,
+            "passed": false
+          },
+          {
+            "score": 95.0,
+            "passed": false
+          },
+          {
+            "score": 91.0,
+            "passed": true
+          }
+        ],
+        "structure": [
+          [
+            "2026-11-11：抗阻动作必须给出可执行的余力 RIR 目标",
+            "2026-11-14：零准备时间必须明确已在此前热身完成准备"
+          ],
+          [
+            "2026-11-11：抗阻动作必须给出可执行的余力 RIR 目标",
+            "2026-11-14：零准备时间必须明确已在此前热身完成准备"
+          ],
+          []
+        ],
+        "error": null,
+        "patch_count": 9
+      },
+      {
+        "case": "patch",
+        "ok": true,
+        "seconds": 96.8,
+        "calls": [
+          {
+            "task": "plan_revise",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 18798,
+            "status": "ok",
+            "prompt_tokens": 12002,
+            "completion_tokens": 2357,
+            "estimated_cost_yuan": 0.25716
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 77963,
+            "status": "ok",
+            "prompt_tokens": 11694,
+            "completion_tokens": 8598,
+            "estimated_cost_yuan": 0.553032
+          }
+        ],
+        "reviews": [
+          {
+            "score": 88.0,
+            "passed": true
+          }
+        ],
+        "structure": [
+          []
+        ],
+        "error": null,
+        "patch_count": 1
+      }
+    ],
+    "sportswise-simplefast-routing-tests-20261108.json": [
+      {
+        "case": "simple",
+        "ok": false,
+        "seconds": 124.4,
+        "calls": [
+          {
+            "task": "plan_generate",
+            "model": "deepseek-flash",
+            "effort": "none",
+            "duration_ms": 27496,
+            "status": "ok",
+            "prompt_tokens": 3916,
+            "completion_tokens": 3791,
+            "estimated_cost_yuan": 0.05724
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-flash",
+            "effort": "low",
+            "duration_ms": 42270,
+            "status": "ok",
+            "prompt_tokens": 6214,
+            "completion_tokens": 5793,
+            "estimated_cost_yuan": 0.088158
+          },
+          {
+            "task": "plan_revise",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 54507,
+            "status": "ok",
+            "prompt_tokens": 7743,
+            "completion_tokens": 6806,
+            "estimated_cost_yuan": 0.419604
+          }
+        ],
+        "reviews": [
+          {
+            "score": 85.0,
+            "passed": false
+          }
+        ],
+        "structure": [
+          [
+            "2026-11-11：步骤时长总和与课时不符，步骤合计 21 分钟，课程标注 20 分钟",
+            "2026-11-11：动作 四点支撑交替对侧抬臂抬腿（鸟狗简化版） 的工作、换侧、休息与准备时间装不进分配时间，需要 2.35 分钟，分配 2 分钟",
+            "2026-11-14：超出用户单次时间预算"
+          ]
+        ],
+        "error": "生成服务暂时无法完成请求，请稍后重试",
+        "patch_count": 0
+      }
+    ],
+    "sportswise-balanced-benchmark-20261108.json": [
+      {
+        "case": "regular_muscle",
+        "ok": true,
+        "seconds": 396.2,
+        "calls": [
+          {
+            "task": "plan_generate",
+            "model": "deepseek-flash",
+            "effort": "low",
+            "duration_ms": 145188,
+            "status": "ok",
+            "prompt_tokens": 4291,
+            "completion_tokens": 21887,
+            "estimated_cost_yuan": 0.275517
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-flash",
+            "effort": "low",
+            "duration_ms": 107948,
+            "status": "ok",
+            "prompt_tokens": 11617,
+            "completion_tokens": 13259,
+            "estimated_cost_yuan": 0.193959
+          },
+          {
+            "task": "plan_revise",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 84553,
+            "status": "ok",
+            "prompt_tokens": 15312,
+            "completion_tokens": 13446,
+            "estimated_cost_yuan": 0.829152
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 58464,
+            "status": "ok",
+            "prompt_tokens": 11632,
+            "completion_tokens": 6034,
+            "estimated_cost_yuan": 0.429216
+          }
+        ],
+        "reviews": [
+          {
+            "score": 84.0,
+            "passed": false
+          },
+          {
+            "score": 99.0,
+            "passed": true
+          }
+        ],
+        "structural": [
+          [
+            "2026-11-09：动作 哑铃高脚杯深蹲 缺少强度",
+            "2026-11-09：动作 哑铃地板卧推 缺少强度",
+            "2026-11-09：动作 哑铃双手俯身划船 缺少强度",
+            "2026-11-09：动作 哑铃罗马尼亚硬拉 缺少强度",
+            "2026-11-09：动作 平板支撑 缺少强度",
+            "2026-11-09：动作 弹力带面拉 缺少强度",
+            "2026-11-11：动作 哑铃反向弓步 缺少强度",
+            "2026-11-11：动作 哑铃双手俯身划船 缺少强度",
+            "2026-11-11：动作 俯卧撑 缺少强度",
+            "2026-11-11：动作 俯卧撑 的工作、换侧、休息与准备时间装不进分配时间，需要 5.25 分钟，分配 5 分钟",
+            "2026-11-11：动作 哑铃臀桥 缺少强度",
+            "2026-11-11：动作 哑铃站姿肩推 缺少强度",
+            "2026-11-11：动作 弹力带侧向走 缺少强度",
+            "2026-11-13：动作 哑铃交替分腿蹲 缺少强度",
+            "2026-11-13：动作 哑铃相扑硬拉 缺少强度",
+            "2026-11-13：动作 哑铃地板卧推 缺少强度",
+            "2026-11-13：动作 弹力带坐姿划船 缺少强度",
+            "2026-11-13：动作 哑铃弯举 缺少强度",
+            "2026-11-13：动作 哑铃弯举 的工作、换侧、休息与准备时间装不进分配时间，需要 4.3 分钟，分配 4 分钟",
+            "2026-11-13：动作 死虫 缺少强度"
+          ],
+          []
+        ],
+        "error": null
+      },
+      {
+        "case": "advanced_hybrid",
+        "ok": false,
+        "seconds": 593.9,
+        "calls": [
+          {
+            "task": "plan_generate",
+            "model": "deepseek-flash",
+            "effort": "low",
+            "duration_ms": 114676,
+            "status": "ok",
+            "prompt_tokens": 4698,
+            "completion_tokens": 14712,
+            "estimated_cost_yuan": 0.190638
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 73974,
+            "status": "ok",
+            "prompt_tokens": 9689,
+            "completion_tokens": 7760,
+            "estimated_cost_yuan": 0.488748
+          },
+          {
+            "task": "plan_revise",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 85974,
+            "status": "ok",
+            "prompt_tokens": 12413,
+            "completion_tokens": 12628,
+            "estimated_cost_yuan": 0.7551
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 50173,
+            "status": "ok",
+            "prompt_tokens": 9919,
+            "completion_tokens": 5455,
+            "estimated_cost_yuan": 0.380868
+          },
+          {
+            "task": "plan_revise",
+            "model": "deepseek-v4-pro",
+            "effort": "high",
+            "duration_ms": 155074,
+            "status": "ok",
+            "prompt_tokens": 12585,
+            "completion_tokens": 21132,
+            "estimated_cost_yuan": 1.165356
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-v4-pro",
+            "effort": "high",
+            "duration_ms": 113881,
+            "status": "ok",
+            "prompt_tokens": 10254,
+            "completion_tokens": 12363,
+            "estimated_cost_yuan": 0.716472
+          }
+        ],
+        "reviews": [
+          {
+            "score": 75.0,
+            "passed": false
+          },
+          {
+            "score": 89.0,
+            "passed": false
+          },
+          {
+            "score": 69.0,
+            "passed": false
+          }
+        ],
+        "structural": [
+          [
+            "2026-11-10：动作 药球胸前推 缺少强度",
+            "2026-11-10：动作 杠铃卧推 缺少强度",
+            "2026-11-10：动作 引体向上 缺少注意事项、强度",
+            "2026-11-10：动作 单臂哑铃划船 缺少注意事项、强度",
+            "2026-11-10：动作 Pallof抗旋 缺少注意事项、强度",
+            "2026-11-12：动作 箱跳 缺少强度",
+            "2026-11-12：动作 杠铃背蹲 缺少注意事项、强度",
+            "2026-11-12：动作 杠铃罗马尼亚硬拉 缺少注意事项、强度",
+            "2026-11-12：动作 哑铃分腿蹲 缺少注意事项、强度",
+            "2026-11-13：动作 雪橇推与墙球技术 缺少强度",
+            "2026-11-13：技术课需明确低负荷及动作质量停止条件，或至少5次余力",
+            "2026-11-14：动作 壶铃摆动与踏步技术 缺少注意事项、强度",
+            "2026-11-14：技术课需明确低负荷及动作质量停止条件，或至少5次余力",
+            "2026-11-13：相邻日或跨周重复较大负荷同一主要肌群（与 2026-11-12 重叠：glutes, quadriceps），需重新安排或降量",
+            "2026-11-14：相邻日或跨周重复较大负荷同一主要肌群（与 2026-11-13 重叠：core, glutes, quadriceps, shoulders），需重新安排或降量"
+          ],
+          [
+            "2026-11-13：相邻日或跨周重复较大负荷同一主要肌群（与 2026-11-12 重叠：back, core, shoulders），需重新安排或降量"
+          ],
+          [
+            "2026-11-13：相邻日或跨周重复较大负荷同一主要肌群（与 2026-11-12 重叠：back, shoulders），需重新安排或降量",
+            "2026-11-14：相邻日或跨周重复较大负荷同一主要肌群（与 2026-11-13 重叠：core, glutes, quadriceps, shoulders），需重新安排或降量"
+          ]
+        ],
+        "error": "计划经独立评分与两轮修正仍未通过，请补充档案或稍后重新生成"
+      }
+    ],
+    "sportswise-prolow-benchmark-20261108.json": [
+      {
+        "case": "regular_muscle",
+        "ok": false,
+        "seconds": 289.3,
+        "calls": [
+          {
+            "task": "plan_generate",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 103968,
+            "status": "ok",
+            "prompt_tokens": 4294,
+            "completion_tokens": 13037,
+            "estimated_cost_yuan": 0.677304
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 68081,
+            "status": "ok",
+            "prompt_tokens": 9768,
+            "completion_tokens": 7481,
+            "estimated_cost_yuan": 0.476304
+          },
+          {
+            "task": "plan_revise",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 63572,
+            "status": "ok",
+            "prompt_tokens": 11629,
+            "completion_tokens": 9892,
+            "estimated_cost_yuan": 0.614364
+          },
+          {
+            "task": "plan_review",
+            "model": "deepseek-v4-pro",
+            "effort": "low",
+            "duration_ms": 53637,
+            "status": "error",
+            "prompt_tokens": 8652,
+            "completion_tokens": 6113,
+            "estimated_cost_yuan": 0.397248
+          }
+        ],
+        "reviews": [
+          {
+            "score": 89.0,
+            "passed": false
+          },
+          {
+            "score": null,
+            "passed": false
+          }
+        ],
+        "structural": [
+          [
+            "2026-11-09：动作 高脚杯深蹲 缺少好处",
+            "2026-11-09：动作 地板哑铃卧推 缺少好处",
+            "2026-11-09：动作 俯身哑铃划船 缺少好处",
+            "2026-11-09：动作 哑铃罗马尼亚硬拉 缺少好处",
+            "2026-11-09：动作 平板支撑 缺少好处、强度",
+            "2026-11-09：抗阻动作必须给出可执行的余力 RIR 目标",
+            "2026-11-09：动作 平板支撑 的工作、换侧、休息与准备时间装不进分配时间，需要 3.75 分钟，分配 3 分钟",
+            "2026-11-09：动作 哑铃侧平举 缺少好处",
+            "2026-11-09：动作 哑铃侧平举 的工作、换侧、休息与准备时间装不进分配时间，需要 4.3 分钟，分配 4 分钟",
+            "2026-11-11：动作 保加利亚分腿蹲 缺少好处",
+            "2026-11-11：动作 哑铃肩推 缺少好处",
+            "2026-11-11：动作 弹力带划船 缺少好处",
+            "2026-11-11：动作 俯卧撑 缺少好处",
+            "2026-11-11：动作 侧平板支撑 缺少好处、强度",
+            "2026-11-11：抗阻动作必须给出可执行的余力 RIR 目标",
+            "2026-11-11：动作 弹力带面拉 缺少好处",
+            "2026-11-11：动作 弹力带面拉 的工作、换侧、休息与准备时间装不进分配时间，需要 4.25 分钟，分配 4 分钟",
+            "2026-11-13：动作 哑铃罗马尼亚硬拉 缺少好处",
+            "2026-11-13：动作 地板哑铃卧推 缺少好处",
+            "2026-11-13：动作 俯身哑铃划船 缺少好处",
+            "2026-11-13：动作 哑铃臀桥 缺少好处",
+            "2026-11-13：肌群标签不在给定词表中",
+            "2026-11-13：动作 死虫 缺少好处",
+            "2026-11-13：动作 死虫 的工作、换侧、休息与准备时间装不进分配时间，需要 4.5 分钟，分配 4 分钟",
+            "2026-11-13：动作 哑铃弯举 缺少好处",
+            "2026-11-13：动作 哑铃弯举 的工作、换侧、休息与准备时间装不进分配时间，需要 4.3 分钟，分配 4 分钟"
+          ],
+          [
+            "2026-11-09：动作 高脚杯深蹲 缺少好处",
+            "2026-11-09：动作 地板哑铃卧推 缺少好处",
+            "2026-11-09：动作 俯身哑铃划船 缺少好处",
+            "2026-11-09：动作 哑铃罗马尼亚硬拉 缺少好处",
+            "2026-11-09：动作 平板支撑 缺少好处",
+            "2026-11-09：抗阻动作必须给出可执行的余力 RIR 目标",
+            "2026-11-09：动作 哑铃侧平举 缺少好处",
+            "2026-11-11：动作 保加利亚分腿蹲 缺少好处",
+            "2026-11-11：动作 哑铃肩推 缺少好处",
+            "2026-11-11：动作 弹力带划船 缺少好处",
+            "2026-11-11：动作 俯卧撑 缺少好处",
+            "2026-11-11：动作 侧平板支撑 缺少好处",
+            "2026-11-11：抗阻动作必须给出可执行的余力 RIR 目标",
+            "2026-11-11：动作 弹力带面拉 缺少好处",
+            "2026-11-11：动作 弹力带面拉 的工作、换侧、休息与准备时间装不进分配时间，需要 4.25 分钟，分配 4 分钟",
+            "2026-11-13：动作 哑铃罗马尼亚硬拉 缺少好处",
+            "2026-11-13：动作 地板哑铃卧推 缺少好处",
+            "2026-11-13：动作 俯身哑铃划船 缺少好处",
+            "2026-11-13：动作 哑铃臀桥 缺少好处",
+            "2026-11-13：动作 死虫 缺少好处",
+            "2026-11-13：动作 死虫 的工作、换侧、休息与准备时间装不进分配时间，需要 4.5 分钟，分配 4 分钟",
+            "2026-11-13：动作 哑铃弯举 缺少好处",
+            "2026-11-13：动作 哑铃弯举 的工作、换侧、休息与准备时间装不进分配时间，需要 4.3 分钟，分配 4 分钟"
+          ]
+        ],
+        "error": "模型未返回完整方案，未采用，请稍后重试"
+      }
+    ]
+  }
+}

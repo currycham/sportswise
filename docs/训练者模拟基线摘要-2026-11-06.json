@@ -1,0 +1,138 @@
+{
+  "policy": "strength-first-v5.1",
+  "provenance": "初次执行 scripts/simulate_trainers.py 的工具输出原样数值摘要；完整首次 JSON 被并行开发后的重跑覆盖，故不提供无法恢复的原始源码哈希或完整动作快照。",
+  "advanced_vs_new_regular_identical": true,
+  "cases": [
+    {
+      "id": "beginner",
+      "minutes": 55,
+      "kinds": {
+        "walk": 2,
+        "strength": 1
+      },
+      "strength_sets": 4,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "returning",
+      "minutes": 75,
+      "kinds": {
+        "strength": 2,
+        "walk": 1
+      },
+      "strength_sets": 12,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "advanced_muscle",
+      "minutes": 150,
+      "kinds": {
+        "strength": 2,
+        "mobility": 3
+      },
+      "strength_sets": 18,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "regular_muscle",
+      "minutes": 150,
+      "kinds": {
+        "strength": 2,
+        "mobility": 3
+      },
+      "strength_sets": 18,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "advanced_bodyweight",
+      "minutes": 130,
+      "kinds": {
+        "strength": 2,
+        "mobility": 2
+      },
+      "strength_sets": 18,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "runner",
+      "minutes": 220,
+      "kinds": {
+        "run": 3,
+        "strength": 2
+      },
+      "strength_sets": 12,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "cyclist",
+      "minutes": 130,
+      "kinds": {
+        "bike": 3
+      },
+      "strength_sets": 0,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "menstrual_normal",
+      "minutes": 100,
+      "kinds": {
+        "strength": 2,
+        "mobility": 1
+      },
+      "strength_sets": 18,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "menstrual_ease",
+      "minutes": 50,
+      "kinds": {
+        "strength": 2,
+        "mobility": 1
+      },
+      "strength_sets": 6,
+      "same_training_two_weeks": false
+    },
+    {
+      "id": "localized_pain",
+      "minutes": 75,
+      "kinds": {
+        "strength": 2,
+        "walk": 3
+      },
+      "strength_sets": 4,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "limited_time",
+      "minutes": 30,
+      "kinds": {
+        "strength": 2,
+        "mobility": 1
+      },
+      "strength_sets": 4,
+      "same_training_two_weeks": true
+    },
+    {
+      "id": "multi_sport",
+      "minutes": 200,
+      "kinds": {
+        "strength": 2,
+        "dance": 1,
+        "bike": 1,
+        "walk": 1
+      },
+      "strength_sets": 12,
+      "same_training_two_weeks": false
+    },
+    {
+      "id": "healthy_negation",
+      "minutes": 45,
+      "kinds": {
+        "strength": 2,
+        "indoor": 1
+      },
+      "strength_sets": 4,
+      "same_training_two_weeks": true
+    }
+  ]
+}

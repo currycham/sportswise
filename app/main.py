@@ -7,6 +7,7 @@ import secrets
 import threading
 import time
 from contextlib import asynccontextmanager
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from urllib.parse import urlparse
@@ -15,7 +16,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, field_validator
 from typing import Literal
-from . import config, db, engine, services
+from . import config, db, engine, growth, plan_quality, planning_jobs, programming, services, workouts, coaching
 
 COOKIE = 'sw_session'
 
@@ -23,6 +24,8 @@ COOKIE = 'sw_session'
 @asynccontextmanager
 async def lifespan(app):
     db.init()
+    with db.connect() as c:
+        c.execute("UPDATE planning_jobs SET status='failed',message='服务已重启，原计划保留，请重新生成' WHERE status IN ('running','queued')")
     stop = threading.Event()
     thread = threading.Thread(target=services.worker, args=(stop,), daemon=True)
     thread.start()
@@ -69,17 +72,33 @@ def issue(c, uid, response):
 def state_result(row):
     state = db.decode(row)
     d = engine.today(state)
+    displayed = engine.present(state)
+    for slot in ('plan','upcoming'):
+        if displayed.get(slot) and state.get('profile') and displayed[slot].get('policy')!='ai-reviewed-v1':
+            displayed[slot]['programming']=programming.analyse(displayed[slot],state['profile'])
+            displayed[slot]['quality']=plan_quality.evaluate(displayed[slot],state['profile'])
+    flags=engine.load_flags(state)
+    direction=engine.next_direction(state)
+    growth_view={'garden':growth.garden(state,engine.record_kind),
+                 **{c:engine.review(state,c,include_records=False,direction=direction) for c in ('week','month')}}
+    recorded={r.get('session_id') for r in state['records']}
+    options={s['id']:engine.session_options(state,s,flags)
+             for plan in (displayed['plan'],displayed['upcoming']) if plan for s in plan['sessions']
+             if s['date']>=d.isoformat() and s['id'] not in recorded}
     with db.connect() as c:
         notices = [dict(x) for x in c.execute('SELECT * FROM notices WHERE user_id=? ORDER BY created_at DESC LIMIT 30',(row['id'],))]
         deliveries = [dict(x) for x in c.execute('SELECT status,COUNT(*) AS count FROM deliveries WHERE user_id=? GROUP BY status',(row['id'],))]
+        latest_job=c.execute("SELECT * FROM planning_jobs WHERE user_id=? ORDER BY created_at DESC LIMIT 1",(row['id'],)).fetchone()
+        planning_job=planning_jobs.public_job(latest_job) if latest_job and latest_job['status']!='adopted' else None
+
     return {'user':{'id':row['id'],'email':row['email'] if not row['demo'] else '', 'demo':bool(row['demo'])},
-            'revision':row['revision'], 'state':state, 'today':d.isoformat(), 'stats':engine.progress(state),
-            'direction':engine.next_direction(state), 'notices':notices, 'deliveries':deliveries,
+            'revision':row['revision'], 'state':displayed, 'today':d.isoformat(), 'stats':engine.progress(displayed),
+            'growth':growth_view,'planning_job':planning_job,'session_options':options,'load_flags':flags,'direction':direction, 'notices':notices, 'deliveries':deliveries,
             'capabilities': {'ai':bool(config.API_KEY), 'mail':bool(config.SMTP_HOST), 'development':config.ENV!='production'},
             'sources':engine.SOURCES}
 
 
-def change(request, revision, fn):
+def change(request, revision, fn, *, cancel_deliveries=True):
     user = actor(request)
     with db.transaction() as c:
         row = c.execute('SELECT * FROM users WHERE id=?',(user['id'],)).fetchone()
@@ -91,7 +110,7 @@ def change(request, revision, fn):
         except (ValueError, TypeError) as e:
             raise HTTPException(422, str(e)) from e
         db.save(c,user['id'],state,revision)
-        c.execute("UPDATE deliveries SET status='cancelled' WHERE user_id=? AND status='pending'",(user['id'],))
+        if cancel_deliveries:c.execute("UPDATE deliveries SET status='cancelled' WHERE user_id=? AND status='pending'",(user['id'],))
     return {'ok':True, 'result':result, **state_result(db.read_user(user['id']))}
 
 
@@ -101,15 +120,26 @@ class Revision(BaseModel):
 
 class Profile(BaseModel):
     name: str = Field(default='运动者', max_length=30)
-    goal: Literal['habit','energy','strength','endurance'] = 'habit'
+    sex: Literal['undisclosed','female','male'] = 'undisclosed'
+    goal: Literal['habit','energy','strength','endurance','muscle','bone','shape','performance','race','sport','custom'] = 'habit'
     motivation: str = Field(default='', max_length=1000)
     current: str = Field(default='', max_length=1000)
-    level: Literal['beginner','returning','regular'] = 'beginner'
-    days: list[int] = Field(min_length=1,max_length=5)
-    minutes: int = Field(ge=10,le=45)
-    equipment: list[Literal['bodyweight','dumbbell','band']] = ['bodyweight']
-    place: Literal['home','outdoor','mixed'] = 'mixed'
-    likes: list[Literal['walking','strength']] = Field(min_length=1,max_length=2)
+    level: Literal['beginner','returning','regular','advanced','competitive'] = 'beginner'
+    days: list[int] = Field(min_length=1,max_length=7)
+    minutes: int = Field(ge=10,le=240)
+    training_months: int|None = Field(default=None,ge=0,le=720)
+    routine_detail: str = Field(default='',max_length=1500)
+    usual_minutes: int|None = Field(default=None,ge=10,le=240)
+    equipment: list[Literal['bodyweight','dumbbell','band','treadmill','stationary_bike','barbell','rack','bench','cable','machine','pullup','kettlebell','rower','ski_erg','sled','medicine_ball','box','suspension','other']] = ['bodyweight']
+    place: Literal['home','outdoor','mixed','gym'] = 'mixed'
+    likes: list[Literal['walking','strength','running','cycling','mobility','badminton','dance','swimming','hiking','rowing','hiit','yoga','pilates','other']] = Field(min_length=1,max_length=20)
+    planning_style: Literal['fresh_start','preserve_structure','adaptive'] = 'adaptive'
+    training_structure: str = Field(default='',max_length=2000)
+    goal_detail: str = Field(default='',max_length=2000)
+    training_background: str = Field(default='',max_length=2000)
+    activity_detail: str = Field(default='',max_length=1000)
+    equipment_detail: str = Field(default='',max_length=1000)
+    support_training: bool = True
     limitations: str = Field(default='',max_length=1000)
     adult: bool
     consent: bool
@@ -118,12 +148,13 @@ class Profile(BaseModel):
     @classmethod
     def valid_days(cls, v):
         if len(set(v)) != len(v) or any(x<0 or x>6 for x in v):
-            raise ValueError('训练日必须是不同的星期，最多五天')
+            raise ValueError('训练日必须是不同的星期')
         return sorted(v)
 
 
 class ProfileRequest(Revision):
     profile: Profile
+    ai_first: bool = False
 
 
 @app.get('/api/state')
@@ -302,34 +333,99 @@ def update_profile(body:ProfileRequest,request:Request):
         raise HTTPException(422,'需要同意保存必要训练数据，才能建立计划')
     def update(state,c,row):
         p=body.profile.model_dump()
-        old=state['plan']
-        state['profile']=p
-        state['upcoming']=None
-        state['risk']=engine.health_risk(p)
-        state['blocked']=engine.safety(p)
-        if state['blocked']:
-            return state['risk']['message']
-        d=engine.today(state)
-        plan=engine.generate(p,engine.monday(d),old,'根据你更新的目标、可用时间和兴趣安排')
-        if not old:
-            plan['sessions']=[engine.make_session(date.fromisoformat(s['date']),'rest',0,p) if s['date']<d.isoformat() else s for s in plan['sessions']]
-            plan['baseline']=sum(s['minutes'] for s in plan['sessions'])
-        if old and old['week']==plan['week']:
-            recorded={r.get('session_id') for r in state['records']}
-            old_by={s['date']:s for s in old['sessions']}
-            plan['sessions']=[old_by[s['date']] if s['date'] in old_by and (s['date']<d.isoformat() or old_by[s['date']]['id'] in recorded) else s for s in plan['sessions']]
-            plan['baseline']=old['baseline']
-        engine.archive(state)
-        state['plan']=plan
-        if state['risk']['level'] not in ('age','hold') and not any(s['kind']!='rest' and s['date']>=d.isoformat() for s in plan['sessions']):
-            state['upcoming']=engine.generate(p,engine.monday(d)+timedelta(days=7),plan,'本周可用训练日已过，为你接上下一周安排')
-        return '运动档案和安排已更新，过去的训练记录已保留。'+('本周可用训练日已过，下一周已经安排好。' if state.get('upcoming') else '')+state['risk']['message']
+        if p.get('sex')=='male':state.pop('period',None)
+        if body.ai_first or p['goal'] not in engine.GOALS or p['level']=='competitive' or any(x not in workouts.ACTIVITIES for x in p['likes']):
+            state['profile']=p
+            state['risk']=engine.health_risk(p)
+            state['blocked']=engine.safety(p)
+            return '档案已保存；原有计划保留，接下来由生成与评审模型制定新方案。'
+        return legacy_profile_update(state,p)
+    return change(request,body.revision,update)
+
+
+def legacy_profile_update(state,p):
+    old=state['plan']
+    state['profile']=p;state['risk']=engine.health_risk(p);state['blocked']=engine.safety(p)
+    if state['blocked']: return state['risk']['message']
+    d=engine.today(state)
+    plan=engine.generate(p,engine.monday(d),old,'根据更新的目标与时间制定基础安排')
+    recorded={r.get('session_id') for r in state['records']}
+    by={s['date']:s for s in (old or {}).get('sessions',[])}
+    plan['sessions']=[by[s['date']] if s['date'] in by and (s['date']<d.isoformat() or by[s['date']]['id'] in recorded)
+                      else engine.make_session(date.fromisoformat(s['date']),'rest',0,p) if s['date']<d.isoformat() else s for s in plan['sessions']]
+    plan['baseline']=old['baseline'] if old and old['week']==plan['week'] else sum(s['minutes'] for s in plan['sessions'])
+    engine.preserve_recovery(plan,p,recorded|{s['id'] for s in plan['sessions'] if s['date']<d.isoformat()})
+    engine.restore_strength_priority(plan,p,d,recorded|{s['id'] for s in plan['sessions'] if s['date']<d.isoformat()})
+    engine.archive(state);state['plan']=plan;state['upcoming']=None
+    if state['risk']['level'] not in ('age','hold') and not any(s['kind']!='rest' and s['date']>=d.isoformat() for s in plan['sessions']):
+        state['upcoming']=engine.generate(p,engine.monday(d)+timedelta(days=7),plan)
+    return '运动档案和基础安排已更新。'+state['risk']['message']
+
+
+class PlanningRequest(Revision):
+    request_detail: str = Field(default='',max_length=2000)
+    session_id: str|None = Field(default=None,max_length=100)
+    proposal_id: str|None = Field(default=None,max_length=100)
+
+
+@app.post('/api/planning')
+def start_planning(body:PlanningRequest,request:Request):
+    user=actor(request)
+    try: jid=planning_jobs.start(user['id'],body.revision,body.request_detail,body.session_id,body.proposal_id)
+    except ValueError as e: raise HTTPException(422,str(e))
+    with db.connect() as c:
+        job=c.execute('SELECT * FROM planning_jobs WHERE id=? AND user_id=?',(jid,user['id'])).fetchone()
+    return {'job_id':jid,**planning_jobs.public_job(job)}
+
+
+@app.get('/api/planning/estimate')
+def planning_estimate(request:Request):
+    user=actor(request)
+    try:return planning_jobs.estimate_for(user['id'])
+    except ValueError as e:raise HTTPException(422,str(e))
+
+
+@app.get('/api/planning/{job_id}')
+def planning_status(job_id:str,request:Request):
+    user=actor(request)
+    with db.connect() as c:
+        row=c.execute('SELECT * FROM planning_jobs WHERE id=? AND user_id=?',(job_id,user['id'])).fetchone()
+    if not row: raise HTTPException(404,'生成任务不存在')
+    return planning_jobs.public_job(row)
+
+
+class PeriodRequest(Revision):
+    mode: Literal['normal','ease','rest']
+    days: int = Field(ge=1,le=10)
+
+
+@app.put('/api/period')
+def set_period(body:PeriodRequest,request:Request):
+    def update(state,c,row):
+        if not state['profile'] or state.get('blocked'):
+            raise ValueError('请先建立适用的运动档案')
+        if state['profile'].get('sex')=='male':raise ValueError('此档案未启用经期功能')
+        day=engine.today(state)
+        state['period']={'start':day.isoformat(),'end':(day+timedelta(days=body.days-1)).isoformat(),'mode':body.mode}
+        if body.mode=='rest':
+            c.execute("UPDATE notices SET read=1 WHERE user_id=? AND kind IN ('daily','followup') AND period LIKE ?",
+                      (row['id'],day.isoformat()+':%'))
+        return '已保存：'+engine.PERIOD_MODES[body.mode]+'。到期后恢复原安排。'
+    return change(request,body.revision,update)
+
+
+@app.delete('/api/period')
+def end_period(body:Revision,request:Request):
+    def update(state,c,row):
+        state.pop('period',None)
+        return '已结束经期调整，未完成的课程恢复原安排。'
     return change(request,body.revision,update)
 
 
 class CoachRequest(Revision):
     text: str = Field(min_length=1,max_length=1500)
-    session_id: str|None = None
+    session_id: str|None = Field(default=None,max_length=100)
+    proposal_id: str|None = Field(default=None,max_length=100)
 
 
 @app.post('/api/coach')
@@ -338,6 +434,38 @@ def coach(body:CoachRequest,request:Request):
     if user['revision']!=body.revision:
         raise HTTPException(409,'数据已更新，请刷新后重试')
     state=db.decode(user)
+    local=engine.local_intent(body.text)
+    modern=any((state.get(k) or {}).get('policy')=='ai-reviewed-v1' for k in ('plan','upcoming')) or (state.get('profile') or {}).get('goal') in ('performance','race','sport','custom')
+    dialogue=local['intent']!='safety' and (modern or body.proposal_id is not None or local['intent']=='question' or bool(re.search('为什么|原因|原理|逻辑|怎么理解',body.text)))
+    if dialogue:
+        discussion_state=copy.deepcopy(state);discussion_payload=None;discussion_revision=None
+        if body.proposal_id:
+            with db.connect() as c:p=c.execute('SELECT * FROM proposals WHERE id=? AND user_id=?',(body.proposal_id,user['id'])).fetchone()
+            if not p:raise HTTPException(404,'草案不存在')
+            discussion_payload=json.loads(p['payload']);discussion_revision=p['revision']
+            discussion_state['upcoming']=discussion_payload['plan']
+        if body.session_id and coaching.find_session(discussion_state,body.session_id)[1] is None:
+            raise HTTPException(404,'当前账号中找不到这堂课')
+        answer=coaching.discuss(body.text,discussion_state,user['id'],body.session_id)
+        selected_plan,selected_session=coaching.find_session(discussion_state,body.session_id)
+        target_is_ai=selected_plan and selected_plan.get('policy')=='ai-reviewed-v1'
+        past=selected_session and (selected_session['date']<engine.today(state).isoformat() or any(r.get('session_id')==selected_session['id'] for r in state['records']))
+        if answer['can_plan'] and selected_session and (not target_is_ai or past):
+            answer['reply']+='\n已有历史和记录保留；这次讨论会用于未来一周的新草案。'
+            answer['plan_request']=('保留已经发生的训练，本次要求用于下一完整周。'+answer['plan_request'])[:1500]
+        def save_dialogue(current,c,row):
+            if discussion_payload and discussion_payload['plan'].get('policy')=='ai-reviewed-v1' and discussion_revision==row['revision'] and not discussion_payload.get('source_signature'):
+                discussion_payload['source_signature']=planning_jobs.signature(current)
+                c.execute('UPDATE proposals SET payload=? WHERE id=? AND user_id=?',(json.dumps(discussion_payload,ensure_ascii=False),body.proposal_id,row['id']))
+            current['chat'].extend([{'role':'user','text':body.text},{'role':'assistant','text':answer['reply']}]);current['chat']=current['chat'][-60:]
+            if answer['can_plan']:
+                current['coach_plan_request']=answer['plan_request']
+                current['coach_plan_session_id']=body.session_id if target_is_ai and not past else None
+                current['coach_plan_proposal_id']=body.proposal_id if (not body.session_id or target_is_ai) and not past else None
+            else:
+                for key in ('coach_plan_request','coach_plan_session_id','coach_plan_proposal_id'):current.pop(key,None)
+            return {'proposal_id':None,**answer}
+        return change(request,body.revision,save_dialogue,cancel_deliveries=False)
     intent,mode=services.interpret(body.text,state,user['id'])
     proposal_id=None
     reply=intent.get('reply') or ''
@@ -364,6 +492,26 @@ def coach(body:CoachRequest,request:Request):
         state['chat'].extend([{'role':'user','text':body.text},{'role':'assistant','text':reply}])
         state['chat']=state['chat'][-60:]
         return {'reply':reply,'proposal_id':proposal_id,'mode':mode}
+    return change(request,body.revision,update,cancel_deliveries=intent['intent']=='safety')
+
+
+class SwapRequest(Revision):
+    session_id: str
+    kind: Literal['walk','indoor','run','bike','mobility','badminton','dance']|None = None
+    step_index: int|None = Field(default=None,ge=0,le=20)
+
+
+@app.post('/api/plan/swap')
+def swap(body:SwapRequest,request:Request):
+    if (body.kind is None)==(body.step_index is None):
+        raise HTTPException(422,'请选择一个项目或动作')
+    def update(state,c,row):
+        intent={'intent':'swap_kind' if body.kind else 'swap_move','kind':body.kind,'step_index':body.step_index}
+        draft=engine.propose(state,intent,'替换课程或动作',body.session_id)
+        proposal_id=engine.uid()
+        c.execute('INSERT INTO proposals(id,user_id,revision,payload) VALUES (?,?,?,?)',
+                  (proposal_id,row['id'],row['revision']+1,json.dumps(draft,ensure_ascii=False)))
+        return {'proposal_id':proposal_id}
     return change(request,body.revision,update)
 
 
@@ -374,25 +522,46 @@ def proposal(proposal_id:str,request:Request):
         row=c.execute('SELECT * FROM proposals WHERE id=? AND user_id=?',(proposal_id,user['id'])).fetchone()
     if not row:
         raise HTTPException(404,'调整草案不存在')
-    return {'revision':row['revision'],**json.loads(row['payload'])}
+    payload=json.loads(row['payload'])
+    payload['plan']=engine.effective_plan(db.decode(user),payload['plan'])
+    payload.pop('source_signature',None)
+    return {'revision':row['revision'],**payload}
 
 
 @app.post('/api/proposals/{proposal_id}/apply')
 def apply_proposal(proposal_id:str,body:Revision,request:Request):
     def update(state,c,row):
         p=c.execute("SELECT * FROM proposals WHERE id=? AND user_id=? AND created_at>datetime('now','-1 day')",(proposal_id,row['id'])).fetchone()
-        if not p or p['revision']!=row['revision']:
-            raise ValueError('草案已过期或数据已变化，请重新提出调整')
+        if not p:raise ValueError('草案已过期或数据已变化，请重新提出调整')
         payload=json.loads(p['payload'])
+        if p['revision']!=row['revision'] and not (payload['plan'].get('policy')=='ai-reviewed-v1' and payload.get('source_signature')==planning_jobs.signature(state)):
+            raise ValueError('训练基线已变化，请重新生成草案')
+        ai=payload['plan'].get('policy')=='ai-reviewed-v1'
+        if not ai and payload['plan'].get('policy')!=engine.PLAN_POLICY:
+            raise ValueError('排课规则已更新，请重新预览调整')
         if state.get('blocked'):
             raise ValueError('训练建议已暂停，请先确认身体情况')
-        engine.validate_plan(payload['plan'],state['profile'],{r.get('session_id') for r in state['records']})
+        existing_plan=state['plan']
+        if existing_plan and payload['plan']['week']==existing_plan['week']:
+            today=engine.today(state).isoformat()
+            recorded={r.get('session_id') for r in state['records']}
+            past={s['date']:s for s in existing_plan['sessions'] if s['date']<today or s['id'] in recorded}
+            sessions=[past.get(s['date'],s) for s in payload['plan']['sessions']]
+            if len({s['id'] for s in sessions}) != len(sessions):
+                raise ValueError('草案涉及已经过去的课程，请重新提出调整')
+            payload['plan']['sessions']=sessions
+        if ai:
+            from .ai_planning import validate,locked_sessions
+            validate(payload['plan'],state['profile'],locked=locked_sessions(state,payload['plan']['week'],engine.today(state).isoformat()))
+        else:
+            engine.validate_plan(payload['plan'],state['profile'],{r.get('session_id') for r in state['records']})
         if payload['plan']['week']>engine.monday(engine.today(state)).isoformat():
             state['upcoming']=payload['plan']
         else:
             engine.archive(state)
             state['plan']=payload['plan']
         c.execute('DELETE FROM proposals WHERE user_id=?',(row['id'],))
+        c.execute("UPDATE planning_jobs SET status='adopted' WHERE user_id=? AND result LIKE ?",(row['id'],'%'+proposal_id+'%'))
         if state.get('upcoming') and state['upcoming']['id']==payload['plan']['id']:
             return f"{payload['plan']['week']} 起的下一周已安排，届时自动接上；本周安排保留。"
         return '已采用调整，提醒会跟随新安排。'
@@ -415,6 +584,11 @@ def undo(body:Revision,request:Request):
         restored=copy.deepcopy(old)
         restored['version']=state['plan']['version']+1
         restored['reason']='撤回上一次调整，保留训练记录'
+        # Undo cannot rewrite historical days, or undo the current content policy.
+        if old.get('policy') != engine.PLAN_POLICY:
+            raise ValueError('上个版本是旧版计划，请修改当前训练偏好')
+        past = {s['date']:s for s in state['plan']['sessions'] if s['date']<engine.today(state).isoformat()}
+        restored['sessions']=[past.get(s['date'],s) for s in restored['sessions']]
         engine.validate_plan(restored,state['profile'],{r.get('session_id') for r in state['records']})
         engine.archive(state)
         state['plan']=restored
@@ -431,6 +605,9 @@ class Feedback(Revision):
     pain: bool = False
     note: str = Field(default='',max_length=1000)
     activity: str = Field(default='自主活动',max_length=80)
+    avg_heart_rate: int|None = Field(default=None,ge=1,le=300,strict=True)
+    record_id: str|None = None
+    activity_kind: Literal['walk','indoor','run','bike','strength','mobility','badminton','dance','sport','other']|None = None
 
 
 @app.post('/api/records')
@@ -442,15 +619,41 @@ def record(body:Feedback,request:Request):
             raise ValueError('请填写实际活动时长')
         if body.status in ('rest','skipped') and body.minutes!=0:
             raise ValueError('休息或未完成的活动时长应为 0')
+        if body.avg_heart_rate is not None and body.status in ('rest','skipped'):
+            raise ValueError('只有实际活动记录可以填写平均心率')
+        if body.record_id and body.session_id:
+            raise ValueError('请按原记录类型修改')
+        prescription=None
         if body.session_id:
-            session=next((s for p in state['history']+([state['plan']] if state['plan'] else []) for s in p['sessions'] if s['id']==body.session_id),None)
-            if not session or session['date']!=body.date.isoformat():
+            effective=engine.effective_plan(state,state['plan'],engine.today(state))
+            prescription=next((s for s in (effective or {}).get('sessions',[]) if s['id']==body.session_id),None)
+            if prescription and prescription.get('period_adjusted'):
+                if prescription['kind']=='rest' and body.status not in ('rest','skipped'):
+                    raise ValueError('这一天已调整为休息；如有自主活动，请单独记录')
+                prescription={k:v for k,v in prescription.items() if k!='period_adjusted'}
+            else:
+                prescription=None
+            session=next((s for p in ([state['plan']] if state['plan'] else [])+state['history'][::-1]
+                          for s in p['sessions'] if s['id']==body.session_id and s['date']==body.date.isoformat()),None)
+            if not session:
                 raise ValueError('训练日期不匹配，请刷新后重新记录')
             existing=next((r for r in state['records'] if r.get('session_id')==body.session_id),None)
+        elif body.record_id:
+            existing=next((r for r in state['records'] if r['id']==body.record_id and not r.get('session_id') and r.get('source')!='demo'),None)
+            if not existing:
+                raise ValueError('没有找到可编辑的自主运动记录')
         else:
             existing=None
-        r={**body.model_dump(exclude={'revision'},mode='json'),'id':existing['id'] if existing else engine.uid(),
-           'source':'self','created':datetime.now().isoformat(timespec='seconds')}
+        r={**body.model_dump(exclude={'revision','record_id'},mode='json'),'id':existing['id'] if existing else engine.uid(),
+           'source':'self','created':existing['created'] if existing else datetime.now().isoformat(timespec='seconds')}
+        if existing and body.status in ('completed','partial') and 'avg_heart_rate' not in body.model_fields_set:
+            r['avg_heart_rate']=existing.get('avg_heart_rate')
+        if body.session_id:
+            r['activity_kind']=(prescription or (existing or {}).get('prescription') or session)['kind']
+        if body.session_id and existing and existing.get('prescription',{}).get('kind')=='rest' and body.status not in ('rest','skipped'):
+            raise ValueError('这一天已调整为休息；如有自主活动，请单独记录')
+        if prescription or (existing and existing.get('prescription')):
+            r['prescription']=prescription or existing['prescription']
         if existing:
             state['records'][state['records'].index(existing)]=r
         else:
@@ -460,7 +663,8 @@ def record(body:Feedback,request:Request):
             old_note=state['profile'].get('limitations','')
             state['profile']['limitations']=(old_note+'；训练反馈中报告不适：'+(body.note or '请结合医嘱确认活动范围')).strip('；')[-1000:]
             engine.reconcile_health(state)
-        return '已记录。'+engine.next_direction(state)[1]
+        flags=engine.load_flags(state)
+        return '已记录。'+(flags[0]['label']+'连续超出计划，可在「成长」查看如何调整。' if flags and not body.pain else engine.next_direction(state)[1])
     return change(request,body.revision,update)
 
 
@@ -490,22 +694,30 @@ def next_week(body:NextWeek,request:Request):
     def update(state,c,row):
         if not state['profile'] or state.get('blocked'):
             raise ValueError('请先确认运动档案和身体情况')
+        if state['profile']['goal'] not in engine.GOALS or state['profile']['level']=='competitive' or (state.get('plan') or {}).get('policy')=='ai-reviewed-v1':
+            raise ValueError('请使用「AI生成并评审」制定下一周，原方案保留')
         d=engine.today(state)
         old=state['plan']
         next_start=engine.monday(d)+timedelta(days=7)
-        if state.get('upcoming') or (old and old['week']>=next_start.isoformat()):
+        if (state.get('upcoming') and not engine.load_flags(state)) or (old and old['week']>=next_start.isoformat()):
             raise ValueError('下一周已经安排好了，请到计划页查看')
-        direction,reason=engine.next_direction(state)
-        minutes=min(state['profile']['minutes'],max((x['minutes'] for x in old['sessions'] if x['kind']!='rest'),default=min(20,state['profile']['minutes'])))
+        direction,reason=engine.next_direction(state,include_period=False)
+        minutes=min(state['profile']['minutes'],max((x['minutes'] for x in (old or {}).get('sessions',[]) if x['kind']!='rest'),default=min(20,state['profile']['minutes'])))
+        flags=engine.load_flags(state)
         if direction in ('ease','restart'):
             minutes=min(minutes,15)
         if body.progress:
-            if direction!='consider' or not body.recovered:
+            period=engine.period_view(state)
+            if flags or direction!='consider' or not body.recovered or (period and period['mode']!='normal'):
                 raise ValueError('进阶需要至少四次完整且轻松的近期训练，并确认恢复良好')
             minutes=min(state['profile']['minutes'],minutes+5)
-        p=copy.deepcopy(state['profile'])
-        p['minutes']=minutes
-        plan=engine.generate(p,next_start,old,reason)
+        p=state['profile']
+        plan=engine.generate(p,next_start,old,reason,duration=minutes,easy_only=direction in ('ease','restart'),load_flags=flags)
+        if old:
+            locked={s['id'] for s in old['sessions']}
+            engine.preserve_recovery(plan,p,locked,old['sessions'])
+            if not any(f['kind']=='strength' for f in flags):
+                engine.restore_strength_priority(plan,p,next_start,locked,old['sessions'])
         # Draft only; future plan is not activated by preview.
         proposal_id=engine.uid()
         c.execute('INSERT INTO proposals(id,user_id,revision,payload) VALUES (?,?,?,?)',
@@ -589,7 +801,7 @@ def delete_account(request:Request,response:Response):
 
 @app.get('/api/health')
 def health():
-    return {'ok':True,'product':'SportsWise','plan_policy':'risk-aware-v2'}
+    return {'ok':True,'product':'SportsWise','plan_policy':engine.PLAN_POLICY,'growth':'garden-v1'}
 
 
 app.mount('/static',StaticFiles(directory=config.ROOT/'static'),name='static')

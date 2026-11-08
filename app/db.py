@@ -63,12 +63,22 @@ def init():
           id TEXT PRIMARY KEY, user_id TEXT REFERENCES users(id) ON DELETE CASCADE,
           status TEXT, attempts INTEGER DEFAULT 0, error TEXT,
           updated_at TEXT DEFAULT CURRENT_TIMESTAMP);
+        CREATE TABLE IF NOT EXISTS planning_jobs (
+          id TEXT PRIMARY KEY, user_id TEXT REFERENCES users(id) ON DELETE CASCADE,
+          status TEXT, stage TEXT, message TEXT, result TEXT, created_at REAL, updated_at REAL);
         CREATE TABLE IF NOT EXISTS llm_usage (
           id INTEGER PRIMARY KEY, task TEXT, actor TEXT,
           prompt_tokens INTEGER DEFAULT 0, cached_tokens INTEGER DEFAULT 0,
           completion_tokens INTEGER DEFAULT 0, cost REAL DEFAULT 0,
           at TEXT DEFAULT CURRENT_TIMESTAMP);
         ''')
+        # Additive migration: existing usage and budgets remain intact.
+        columns={r['name'] for r in c.execute('PRAGMA table_info(llm_usage)')}
+        for name,declaration in {'model':"TEXT DEFAULT ''",'effort':"TEXT DEFAULT ''",
+                                 'duration_ms':'INTEGER DEFAULT 0','status':"TEXT DEFAULT 'legacy'"}.items():
+            if name not in columns:
+                c.execute(f'ALTER TABLE llm_usage ADD COLUMN {name} {declaration}')
+        c.execute('CREATE INDEX IF NOT EXISTS llm_usage_timing ON llm_usage(task,model,effort,status,id)')
 
 
 def read_user(uid):
